@@ -53,7 +53,7 @@ export default function Quarantine() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="text-xs bg-white border border-sentinel-border rounded-md px-3 py-1.5 focus:ring-1 focus:ring-blue-500"
+          className="text-xs bg-white border border-slate-200/90 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500 text-slate-700 shadow-xs"
         >
           <option value="">All Quarantine Statuses</option>
           <option value="QUARANTINED">Quarantined (Pending)</option>
@@ -64,25 +64,25 @@ export default function Quarantine() {
       </div>
 
       {message && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-md font-medium">
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-2xl font-medium">
           {message}
         </div>
       )}
 
       {/* Quarantine Table */}
-      <div className="sentinel-card overflow-hidden">
+      <div className="sentinel-card rounded-2xl border border-slate-100 overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs text-slate-700">
-            <thead className="bg-slate-50 border-b border-sentinel-border text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <thead className="bg-slate-50/70 border-b border-slate-100 text-[10px] font-bold uppercase tracking-wider text-slate-400">
               <tr>
-                <th className="py-3 px-4">Station ID</th>
-                <th className="py-3 px-4">Root Cause Classification</th>
-                <th className="py-3 px-4">Observed Values</th>
-                <th className="py-3 px-4">Counterfactual Expected</th>
-                <th className="py-3 px-4 text-center">Score</th>
-                <th className="py-3 px-4">Timestamp</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Operator Actions</th>
+                <th className="py-3.5 px-4">Station ID</th>
+                <th className="py-3.5 px-4">Root Cause Classification</th>
+                <th className="py-3.5 px-4">Observed Values</th>
+                <th className="py-3.5 px-4">Counterfactual Expected</th>
+                <th className="py-3.5 px-4 text-center">Score</th>
+                <th className="py-3.5 px-4">Timestamp</th>
+                <th className="py-3.5 px-4">Status</th>
+                <th className="py-3.5 px-4 text-right">Operator Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -91,7 +91,7 @@ export default function Quarantine() {
                 const exp = rec.expectedValue || {};
 
                 return (
-                  <tr key={rec._id} className="hover:bg-slate-50">
+                  <tr key={rec._id} className="hover:bg-blue-50/30 transition-colors">
                     <td className="py-3 px-4 font-bold text-blue-700">{rec.stationId}</td>
                     <td className="py-3 px-4 font-semibold text-slate-800">
                       <div>{rec.rootCause}</div>
@@ -112,34 +112,34 @@ export default function Quarantine() {
                       {new Date(rec.timestamp).toLocaleTimeString()}
                     </td>
                     <td className="py-3 px-4">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                        rec.status === 'QUARANTINED' ? 'bg-amber-100 text-amber-800' :
-                        rec.status === 'CORRECTED' ? 'bg-blue-100 text-blue-800' :
-                        rec.status === 'VERIFIED' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-700'
+                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                        rec.status === 'QUARANTINED' ? 'bg-amber-50 text-amber-800 border border-amber-200' :
+                        rec.status === 'CORRECTED' ? 'bg-blue-50 text-blue-800 border border-blue-200' :
+                        rec.status === 'VERIFIED' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-700 border border-red-200'
                       }`}>
                         {rec.status}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-right space-x-1 whitespace-nowrap">
+                    <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                       {rec.status === 'QUARANTINED' ? (
                         <>
                           <button
                             onClick={() => handleAction(rec._id, 'APPLY_CORRECTION')}
-                            className="px-2 py-1 text-[11px] font-semibold rounded bg-blue-600 hover:bg-blue-700 text-white shadow-xs"
+                            className="px-3 py-1 text-[11px] font-semibold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-all"
                             title="Impute Counterfactual Estimate"
                           >
                             Apply Correction
                           </button>
                           <button
                             onClick={() => handleAction(rec._id, 'ACCEPT_RAW')}
-                            className="px-2 py-1 text-[11px] font-semibold rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
+                            className="px-3 py-1 text-[11px] font-semibold rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200/80 transition-all"
                             title="Accept as Genuine Event"
                           >
                             Accept Raw
                           </button>
                           <button
                             onClick={() => handleAction(rec._id, 'REJECT')}
-                            className="px-2 py-1 text-[11px] font-semibold rounded bg-red-50 text-red-700 hover:bg-red-100 border border-red-200"
+                            className="px-3 py-1 text-[11px] font-semibold rounded-full bg-red-50 text-red-700 hover:bg-red-100 border border-red-200/80 transition-all"
                             title="Permanently Flag as Fault"
                           >
                             Reject
@@ -148,7 +148,7 @@ export default function Quarantine() {
                       ) : (
                         <button
                           onClick={() => handleAction(rec._id, 'RESTORE')}
-                          className="px-2 py-1 text-[11px] font-semibold rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border"
+                          className="px-3 py-1 text-[11px] font-semibold rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-all"
                         >
                           Re-quarantine
                         </button>

@@ -53,7 +53,7 @@ export default function Alerts() {
           <select
             value={filterSeverity}
             onChange={(e) => setFilterSeverity(e.target.value)}
-            className="text-xs bg-white border border-sentinel-border rounded-md px-3 py-1.5"
+            className="text-xs bg-white border border-slate-200/90 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500 text-slate-700 shadow-xs"
           >
             <option value="">All Severities</option>
             <option value="CRITICAL">Critical</option>
@@ -65,7 +65,7 @@ export default function Alerts() {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="text-xs bg-white border border-sentinel-border rounded-md px-3 py-1.5"
+            className="text-xs bg-white border border-slate-200/90 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500 text-slate-700 shadow-xs"
           >
             <option value="">All Statuses</option>
             <option value="ACTIVE">Active</option>
@@ -76,19 +76,19 @@ export default function Alerts() {
       </div>
 
       {/* Alerts Table */}
-      <div className="sentinel-card overflow-hidden">
+      <div className="sentinel-card rounded-2xl border border-slate-100 overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs text-slate-700">
-            <thead className="bg-slate-50 border-b border-sentinel-border text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <thead className="bg-slate-50/70 border-b border-slate-100 text-[10px] font-bold uppercase tracking-wider text-slate-400">
               <tr>
-                <th className="py-3 px-4">Severity</th>
-                <th className="py-3 px-4">Station ID</th>
-                <th className="py-3 px-4">Root Cause Classification</th>
-                <th className="py-3 px-4">Observed vs Expected</th>
-                <th className="py-3 px-4 text-center">Confidence</th>
-                <th className="py-3 px-4">Timestamp</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Triage Actions</th>
+                <th className="py-3.5 px-4">Severity</th>
+                <th className="py-3.5 px-4">Station ID</th>
+                <th className="py-3.5 px-4">Root Cause Classification</th>
+                <th className="py-3.5 px-4">Observed vs Expected</th>
+                <th className="py-3.5 px-4 text-center">Confidence</th>
+                <th className="py-3.5 px-4">Timestamp</th>
+                <th className="py-3.5 px-4">Status</th>
+                <th className="py-3.5 px-4 text-right">Triage Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -96,7 +96,7 @@ export default function Alerts() {
                 <tr
                   key={al._id || al.id}
                   onClick={() => navigate(`/stations/${al.stationId}`)}
-                  className="hover:bg-slate-50 transition-colors cursor-pointer"
+                  className="hover:bg-blue-50/30 transition-colors cursor-pointer"
                 >
                   <td className="py-3 px-4">
                     <SeverityBadge severity={al.severity} />
@@ -117,18 +117,18 @@ export default function Alerts() {
                     {al.timestamp ? new Date(al.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Now'}
                   </td>
                   <td className="py-3 px-4">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                      al.status === 'ACTIVE' ? 'bg-red-100 text-red-700' :
-                      al.status === 'ACKNOWLEDGED' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600'
+                    <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                      al.status === 'ACTIVE' ? 'bg-red-50 text-red-700 border border-red-200' :
+                      al.status === 'ACKNOWLEDGED' ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-slate-50 text-slate-600 border border-slate-200'
                     }`}>
                       {al.status}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-right space-x-1 whitespace-nowrap">
+                  <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                     {al.status === 'ACTIVE' && (
                       <button
                         onClick={(e) => handleAction(al._id, 'ACKNOWLEDGED', e)}
-                        className="px-2.5 py-1 text-[11px] font-semibold rounded bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200"
+                        className="px-3 py-1 text-[11px] font-semibold rounded-full bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200 transition-all shadow-xs"
                       >
                         Acknowledge
                       </button>
@@ -138,14 +138,14 @@ export default function Alerts() {
                         e.stopPropagation();
                         navigate(`/stations/${al.stationId}`);
                       }}
-                      className="px-2.5 py-1 text-[11px] font-semibold rounded bg-blue-600 text-white hover:bg-blue-700 shadow-xs"
+                      className="px-3 py-1 text-[11px] font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 shadow-xs transition-all"
                     >
                       Investigate
                     </button>
                     {al.status !== 'RESOLVED' && (
                       <button
                         onClick={(e) => handleAction(al._id, 'RESOLVED', e)}
-                        className="px-2.5 py-1 text-[11px] font-semibold rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
+                        className="px-3 py-1 text-[11px] font-semibold rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-xs"
                       >
                         Resolve
                       </button>

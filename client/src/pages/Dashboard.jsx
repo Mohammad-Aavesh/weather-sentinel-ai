@@ -113,28 +113,28 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center space-x-2">
+          <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center space-x-2.5">
             <span>Meteorological Command Center</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
           </h2>
           <p className="text-xs text-slate-500 mt-0.5">
             Real-time quality-control & evidence-based anomaly detection for 25 Automatic Weather Stations
           </p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2.5">
           <button
             onClick={() => navigate('/simulator')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold rounded bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition-all"
+            className="flex items-center space-x-2 px-4 py-2 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm shadow-blue-500/25 transition-all"
           >
-            <FlaskConical className="w-4 h-4" />
+            <FlaskConical className="w-3.5 h-3.5" />
             <span>Anomaly Simulator</span>
           </button>
           <button
             onClick={fetchData}
-            className="p-1.5 rounded bg-white hover:bg-slate-50 border border-sentinel-border text-slate-600 transition-colors"
+            className="p-2 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-600 hover:text-blue-600 transition-colors shadow-xs"
             title="Refresh Telemetry"
           >
             <RefreshCw className="w-4 h-4" />
@@ -205,15 +205,15 @@ export default function Dashboard() {
       {/* Main Grid: AWS Map (Left) + Recent Alerts (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Map View (7 cols) */}
-        <div className="lg:col-span-7 sentinel-card p-4 flex flex-col">
-          <div className="flex items-center justify-between pb-3 border-b border-sentinel-border mb-3">
+        <div className="lg:col-span-7 sentinel-card p-5 rounded-2xl flex flex-col border border-slate-100 hover:border-blue-200">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">AWS Station Network Map</h3>
-              <p className="text-[11px] text-slate-500">Karnataka Regional Synoptic Grid</p>
+              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">AWS Station Network Map</h3>
+              <p className="text-[11px] text-slate-400">Karnataka Regional Synoptic Grid</p>
             </div>
             <button
               onClick={() => navigate('/live-map')}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center space-x-1"
+              className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100/80 text-xs font-semibold flex items-center space-x-1.5 transition-all border border-blue-200/80"
             >
               <span>Full Screen Map</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -225,29 +225,29 @@ export default function Dashboard() {
         </div>
 
         {/* Right Recent Alerts (5 cols) */}
-        <div className="lg:col-span-5 sentinel-card p-4 flex flex-col">
-          <div className="flex items-center justify-between pb-3 border-b border-sentinel-border mb-2">
+        <div className="lg:col-span-5 sentinel-card p-5 rounded-2xl flex flex-col border border-slate-100 hover:border-blue-200">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-2">
             <div className="flex items-center space-x-2">
               <AlertTriangle className="w-4 h-4 text-red-500" />
-              <h3 className="text-sm font-bold text-slate-800">Operational Alerts</h3>
+              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Operational Alerts</h3>
             </div>
             <button
               onClick={() => navigate('/alerts')}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+              className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100/80 text-xs font-semibold transition-all border border-blue-200/80"
             >
               View All ({alerts.length})
             </button>
           </div>
 
-          <div className="flex-1 divide-y divide-slate-100 overflow-y-auto max-h-[360px]">
+          <div className="flex-1 space-y-1.5 overflow-y-auto max-h-[360px] pr-1">
             {alerts.length === 0 ? (
-              <p className="text-xs text-slate-400 py-6 text-center">No active alerts recorded.</p>
+              <p className="text-xs text-slate-400 py-8 text-center">No active alerts recorded.</p>
             ) : (
               alerts.map((al) => (
                 <div
                   key={al._id || al.id}
                   onClick={() => navigate(`/stations/${al.stationId}`)}
-                  className="py-2.5 px-1 hover:bg-slate-50 rounded cursor-pointer transition-colors"
+                  className="p-3 hover:bg-blue-50/40 rounded-2xl cursor-pointer transition-all border border-slate-100/60 hover:border-blue-200"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
@@ -271,14 +271,14 @@ export default function Dashboard() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <h3 className="text-base font-bold text-slate-900">
-              Primary Demo Station: {primaryStation?.stationId || 'AWS-042'} — {primaryStation?.name || 'Chikkamagaluru Hill Station'}
+            <h3 className="text-sm font-bold text-slate-900">
+              Primary Demo Station: <span className="text-blue-700 font-extrabold">{primaryStation?.stationId || 'AWS-042'}</span> — {primaryStation?.name || 'Chikkamagaluru Hill Station'}
             </h3>
             <StationStatusBadge status={primaryStation?.status || 'anomaly'} />
           </div>
           <button
             onClick={() => navigate(`/stations/${primaryStation?.stationId || 'AWS-042'}`)}
-            className="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+            className="px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100/80 border border-blue-200/80 text-xs font-semibold flex items-center space-x-1.5 transition-all shadow-xs"
           >
             <span>Deep Forensic Analysis</span>
             <ArrowRight className="w-3.5 h-3.5" />

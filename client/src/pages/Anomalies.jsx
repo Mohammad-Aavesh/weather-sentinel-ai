@@ -36,7 +36,7 @@ export default function Anomalies() {
           <div
             key={anom._id}
             onClick={() => navigate(`/stations/${anom.stationId}`)}
-            className="sentinel-card p-5 hover:border-blue-300 cursor-pointer transition-all border-l-4 border-l-red-500"
+            className="sentinel-card p-5 rounded-2xl hover:border-blue-300 cursor-pointer transition-all border border-slate-100 hover:shadow-md border-l-4 border-l-red-500"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
               <div className="flex items-center space-x-3">
@@ -45,10 +45,10 @@ export default function Anomalies() {
                 <SeverityBadge severity={anom.severity} />
               </div>
               <div className="flex items-center space-x-3 text-xs">
-                <span className="text-slate-500">
+                <span className="text-slate-400">
                   {new Date(anom.createdAt).toLocaleString()}
                 </span>
-                <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">
+                <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-bold border border-blue-200/80 text-[10px]">
                   Confidence: {anom.confidence}%
                 </span>
               </div>

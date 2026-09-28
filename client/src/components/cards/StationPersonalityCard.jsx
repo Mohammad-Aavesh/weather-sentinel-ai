@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun, CloudSun, Moon, Activity, Zap } from 'lucide-react';
+import { Sun, CloudSun, Moon } from 'lucide-react';
 
 export default function StationPersonalityCard({ profile, stationId = 'AWS-042' }) {
   const p = profile || {
@@ -12,34 +12,34 @@ export default function StationPersonalityCard({ profile, stationId = 'AWS-042' 
   };
 
   return (
-    <div className="sentinel-card p-5">
-      <div className="flex items-center justify-between pb-3 border-b border-sentinel-border">
+    <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
         <div>
-          <h3 className="text-sm font-bold text-slate-800">Station Personality</h3>
-          <p className="text-[11px] text-slate-500">Locally learned diurnal climatological baseline ({stationId})</p>
+          <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Station Personality</h3>
+          <p className="text-[11px] text-slate-400">Locally learned diurnal climatological baseline ({stationId})</p>
         </div>
-        <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <span className="text-[10px] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200/80">
           Adaptive Baseline
         </span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
         {/* Morning */}
-        <div className="p-3 rounded-md bg-amber-50/40 border border-amber-200/60">
-          <div className="flex items-center space-x-1.5 text-amber-700 mb-1">
-            <Sun className="w-4 h-4" />
-            <span className="text-xs font-bold">Morning Baseline</span>
+        <div className="p-3.5 rounded-2xl bg-slate-50/70 border border-slate-200/80">
+          <div className="flex items-center space-x-1.5 text-blue-700 mb-2">
+            <Sun className="w-4 h-4 text-amber-500" />
+            <span className="text-xs font-bold text-slate-800">Morning Baseline</span>
           </div>
           <div className="space-y-1 text-xs">
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Temperature:</span>
               <span className="font-semibold text-slate-800">{p.morning.tempMin} - {p.morning.tempMax}°C</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Humidity:</span>
               <span className="font-semibold text-slate-800">{p.morning.humidityMin} - {p.morning.humidityMax}%</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Pressure:</span>
               <span className="font-semibold text-slate-800">{p.morning.pressureMin} - {p.morning.pressureMax} hPa</span>
             </div>
@@ -47,21 +47,21 @@ export default function StationPersonalityCard({ profile, stationId = 'AWS-042' 
         </div>
 
         {/* Afternoon */}
-        <div className="p-3 rounded-md bg-orange-50/40 border border-orange-200/60">
-          <div className="flex items-center space-x-1.5 text-orange-700 mb-1">
-            <CloudSun className="w-4 h-4" />
-            <span className="text-xs font-bold">Afternoon Baseline</span>
+        <div className="p-3.5 rounded-2xl bg-slate-50/70 border border-slate-200/80">
+          <div className="flex items-center space-x-1.5 text-blue-700 mb-2">
+            <CloudSun className="w-4 h-4 text-blue-500" />
+            <span className="text-xs font-bold text-slate-800">Afternoon Baseline</span>
           </div>
           <div className="space-y-1 text-xs">
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Temperature:</span>
               <span className="font-semibold text-slate-800">{p.afternoon.tempMin} - {p.afternoon.tempMax}°C</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Humidity:</span>
               <span className="font-semibold text-slate-800">{p.afternoon.humidityMin} - {p.afternoon.humidityMax}%</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Pressure:</span>
               <span className="font-semibold text-slate-800">{p.afternoon.pressureMin} - {p.afternoon.pressureMax} hPa</span>
             </div>
@@ -69,21 +69,21 @@ export default function StationPersonalityCard({ profile, stationId = 'AWS-042' 
         </div>
 
         {/* Night */}
-        <div className="p-3 rounded-md bg-indigo-50/40 border border-indigo-200/60">
-          <div className="flex items-center space-x-1.5 text-indigo-700 mb-1">
-            <Moon className="w-4 h-4" />
-            <span className="text-xs font-bold">Night Baseline</span>
+        <div className="p-3.5 rounded-2xl bg-slate-50/70 border border-slate-200/80">
+          <div className="flex items-center space-x-1.5 text-blue-700 mb-2">
+            <Moon className="w-4 h-4 text-indigo-500" />
+            <span className="text-xs font-bold text-slate-800">Night Baseline</span>
           </div>
           <div className="space-y-1 text-xs">
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Temperature:</span>
               <span className="font-semibold text-slate-800">{p.night.tempMin} - {p.night.tempMax}°C</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Humidity:</span>
               <span className="font-semibold text-slate-800">{p.night.humidityMin} - {p.night.humidityMax}%</span>
             </div>
-            <div className="flex justify-between text-slate-600">
+            <div className="flex justify-between text-slate-500">
               <span>Pressure:</span>
               <span className="font-semibold text-slate-800">{p.night.pressureMin} - {p.night.pressureMax} hPa</span>
             </div>

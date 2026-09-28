@@ -39,7 +39,7 @@ export default function StationMap({ stations = [], selectedStationId, height = 
   const defaultCenter = [14.0, 76.2];
 
   return (
-    <div className="w-full rounded-lg overflow-hidden border border-sentinel-border shadow-xs relative" style={{ height }}>
+    <div className="w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs relative" style={{ height }}>
       <MapContainer
         center={defaultCenter}
         zoom={7}
@@ -71,7 +71,7 @@ export default function StationMap({ stations = [], selectedStationId, height = 
                   <p className="text-[11px] font-medium text-slate-700">{st.name}</p>
                   <p className="text-[10px] text-slate-500 mb-2">{st.location}</p>
 
-                  <div className="grid grid-cols-3 gap-1 bg-slate-50 p-2 rounded text-center mb-2 border border-slate-100">
+                  <div className="grid grid-cols-3 gap-1 bg-slate-50 p-2 rounded-xl text-center mb-2 border border-slate-100">
                     <div>
                       <span className="text-[9px] text-slate-400 block font-medium">Temp</span>
                       <span className="text-xs font-bold text-slate-800">
@@ -94,12 +94,12 @@ export default function StationMap({ stations = [], selectedStationId, height = 
 
                   <div className="flex items-center justify-between text-[11px] mb-3">
                     <span className="text-slate-500">Trust Score:</span>
-                    <span className="font-bold text-blue-700">{st.trustScore || 85}/100</span>
+                    <span className="font-bold text-blue-600">{st.trustScore || 85}/100</span>
                   </div>
 
                   <button
                     onClick={() => navigate(`/stations/${st.stationId}`)}
-                    className="w-full py-1 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors"
+                    className="w-full py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-xs transition-all"
                   >
                     View Station Details
                   </button>
@@ -111,23 +111,23 @@ export default function StationMap({ stations = [], selectedStationId, height = 
       </MapContainer>
 
       {/* Map Legend Overlay */}
-      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-xs p-2.5 rounded-md border border-sentinel-border shadow-md z-[1000] text-[10px] space-y-1">
-        <span className="font-bold text-slate-700 block mb-1">Station Status</span>
+      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md p-3 rounded-2xl border border-slate-200/80 shadow-md z-[1000] text-[10px] space-y-1.5">
+        <span className="font-bold text-slate-800 block mb-1">Station Status</span>
         <div className="flex items-center space-x-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-          <span>Normal (22)</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span className="text-slate-600">Normal (22)</span>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
-          <span>Anomaly (2)</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+          <span className="text-slate-600">Anomaly (2)</span>
         </div>
         <div className="flex items-center space-x-2">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-          <span>Warning / Extreme</span>
+          <span className="text-slate-600">Warning / Extreme</span>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-          <span>Quarantined (1)</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+          <span className="text-slate-600">Quarantined (1)</span>
         </div>
       </div>
     </div>

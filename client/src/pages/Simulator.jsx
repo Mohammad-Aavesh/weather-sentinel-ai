@@ -85,18 +85,18 @@ export default function Simulator() {
             setAnomalyType('TEMPERATURE_SPIKE');
             handleInject();
           }}
-          className="px-3.5 py-1.5 text-xs font-bold rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow-xs flex items-center space-x-2 transition-all"
+          className="px-4 py-2 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm shadow-blue-500/25 flex items-center space-x-2 transition-all"
         >
-          <Flame className="w-4 h-4 text-amber-300" />
-          <span>Run Primary SIH Demo Scenario</span>
+          <Flame className="w-4 h-4 text-blue-200" />
+          <span>Run Primary Demo Scenario</span>
         </button>
       </div>
 
       {/* Simulator Controls & Scenario Selection */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Scenario Selector (7 cols) */}
-        <div className="lg:col-span-7 sentinel-card p-5">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+        <div className="lg:col-span-7 sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
             Select Anomaly / Event Scenario
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -107,14 +107,14 @@ export default function Simulator() {
                 <div
                   key={sc.id}
                   onClick={() => setAnomalyType(sc.id)}
-                  className={`p-3 rounded-lg border text-left cursor-pointer transition-all flex items-start space-x-3 ${
+                  className={`p-3.5 rounded-2xl border text-left cursor-pointer transition-all flex items-start space-x-3 ${
                     isSelected
-                      ? 'bg-blue-50/70 border-blue-500 ring-1 ring-blue-500 shadow-xs'
-                      : 'hover:bg-slate-50 border-sentinel-border'
+                      ? 'bg-blue-50/80 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
+                      : 'hover:bg-slate-50/80 border-slate-200/80 bg-white'
                   }`}
                 >
-                  <div className={`w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 ${
-                    isSelected ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    isSelected ? 'bg-blue-600 text-white' : 'bg-blue-50 text-blue-600'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
@@ -122,7 +122,7 @@ export default function Simulator() {
                     <p className={`text-xs font-bold truncate ${isSelected ? 'text-blue-900' : 'text-slate-800'}`}>
                       {sc.name}
                     </p>
-                    <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">
+                    <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-relaxed">
                       {sc.desc}
                     </p>
                   </div>
@@ -133,19 +133,19 @@ export default function Simulator() {
         </div>
 
         {/* Injection Parameters (5 cols) */}
-        <div className="lg:col-span-5 sentinel-card p-5 flex flex-col justify-between">
+        <div className="lg:col-span-5 sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200 flex flex-col justify-between">
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
               Injection Control Parameters
             </h3>
 
             <div className="space-y-4 text-xs">
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Target Weather Station</label>
+                <label className="font-semibold text-slate-700 block mb-1.5 ml-1">Target Weather Station</label>
                 <select
                   value={stationId}
                   onChange={(e) => setStationId(e.target.value)}
-                  className="w-full bg-white border border-sentinel-border rounded-md px-3 py-2 text-xs focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-white border border-slate-200/90 rounded-full px-4 py-2 text-xs focus:ring-2 focus:ring-blue-100 focus:border-blue-500 text-slate-800 shadow-xs"
                 >
                   <option value="AWS-042">AWS-042 — Chikkamagaluru Hill Station (Primary)</option>
                   <option value="AWS-017">AWS-017 — Shivamogga Agri Sector</option>
@@ -156,17 +156,17 @@ export default function Simulator() {
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Target Severity Level</label>
+                <label className="font-semibold text-slate-700 block mb-1.5 ml-1">Target Severity Level</label>
                 <div className="grid grid-cols-4 gap-1.5">
                   {['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'].map((sev) => (
                     <button
                       key={sev}
                       type="button"
                       onClick={() => setSeverity(sev)}
-                      className={`py-1.5 rounded text-[11px] font-bold transition-all border ${
+                      className={`py-1.5 rounded-full text-[11px] font-bold transition-all border ${
                         severity === sev
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
-                          : 'bg-white text-slate-600 border-sentinel-border hover:bg-slate-50'
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {sev}
@@ -176,9 +176,9 @@ export default function Simulator() {
               </div>
 
               <div>
-                <div className="flex justify-between font-semibold text-slate-700 mb-1">
+                <div className="flex justify-between font-semibold text-slate-700 mb-1 ml-1">
                   <span>Simulated Environmental Noise</span>
-                  <span>±{noiseLevel}</span>
+                  <span className="font-mono text-blue-600">±{noiseLevel}</span>
                 </div>
                 <input
                   type="range"
@@ -191,8 +191,8 @@ export default function Simulator() {
                 />
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-md border border-slate-200 text-[11px] text-slate-600">
-                <span className="font-semibold text-slate-800 block">Scenario Behavior:</span>
+              <div className="p-3.5 bg-slate-50/80 rounded-2xl border border-slate-200/80 text-[11px] text-slate-600">
+                <span className="font-semibold text-slate-800 block mb-0.5">Scenario Behavior:</span>
                 {currentScenario.desc}
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function Simulator() {
           <button
             onClick={handleInject}
             disabled={loading}
-            className="w-full mt-6 py-2.5 px-4 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white font-bold rounded-md text-xs uppercase tracking-wider shadow-sm flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
+            className="w-full mt-6 py-3 px-6 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-full text-xs uppercase tracking-wider shadow-md shadow-blue-500/25 flex items-center justify-center space-x-2 transition-all disabled:opacity-50"
           >
             <Play className="w-4 h-4 fill-white" />
             <span>{loading ? 'Running Anomaly Engine...' : 'Inject & Stream Telemetry'}</span>
@@ -211,61 +211,61 @@ export default function Simulator() {
 
       {/* Simulator Execution Output Panel */}
       {result && (
-        <div className="sentinel-card p-6 bg-slate-50 border-blue-200 animate-fadeIn space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-2">
+        <div className="sentinel-card p-6 rounded-2xl bg-white border border-blue-200 shadow-sm animate-fadeIn space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
                 Live Engine Execution Complete
               </span>
-              <h3 className="text-base font-bold text-slate-900 mt-1">
-                AI Quality-Control Pipeline Assessment: {result.pipelineResult?.fusion?.rootCause}
+              <h3 className="text-base font-bold text-slate-900 mt-2">
+                AI Quality-Control Assessment: {result.pipelineResult?.fusion?.rootCause}
               </h3>
             </div>
             <button
               onClick={() => navigate(`/stations/${result.simulatedParameters?.stationId}`)}
-              className="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+              className="px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold border border-blue-200/80 text-xs flex items-center space-x-1.5 transition-all shadow-xs"
             >
-              <span>View Updated Station Dashboard</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>View Updated Station</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-3 bg-white rounded-md border border-slate-200 text-center">
+            <div className="p-3.5 bg-slate-50/70 rounded-2xl border border-slate-200/80 text-center">
               <span className="text-[10px] text-slate-400 block uppercase font-bold">Anomaly Score</span>
               <span className="text-2xl font-black text-red-600">
                 {result.pipelineResult?.fusion?.anomalyScore}%
               </span>
             </div>
-            <div className="p-3 bg-white rounded-md border border-slate-200 text-center">
+            <div className="p-3.5 bg-slate-50/70 rounded-2xl border border-slate-200/80 text-center">
               <span className="text-[10px] text-slate-400 block uppercase font-bold">Confidence</span>
               <span className="text-2xl font-black text-blue-600">
                 {result.pipelineResult?.fusion?.confidence}%
               </span>
             </div>
-            <div className="p-3 bg-white rounded-md border border-slate-200 text-center">
+            <div className="p-3.5 bg-slate-50/70 rounded-2xl border border-slate-200/80 text-center">
               <span className="text-[10px] text-slate-400 block uppercase font-bold">Severity</span>
               <div className="mt-1">
                 <SeverityBadge severity={result.pipelineResult?.fusion?.severity || 'HIGH'} />
               </div>
             </div>
-            <div className="p-3 bg-white rounded-md border border-slate-200 text-center">
+            <div className="p-3.5 bg-slate-50/70 rounded-2xl border border-slate-200/80 text-center">
               <span className="text-[10px] text-slate-400 block uppercase font-bold">Quarantine State</span>
-              <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded inline-block mt-1">
+              <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full inline-block mt-1">
                 {result.pipelineResult?.reading?.qualityStatus || 'QUARANTINED'}
               </span>
             </div>
           </div>
 
           {/* Reasons List */}
-          <div className="p-4 bg-white rounded-md border border-slate-200">
+          <div className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/80">
             <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
               Decision Evidence & Forensic Explanation:
             </h4>
-            <ul className="space-y-1.5 text-xs text-slate-700 list-disc list-inside">
+            <ul className="space-y-1.5 text-xs text-slate-600 list-disc list-inside">
               {result.pipelineResult?.fusion?.reasons?.map((reason, i) => (
-                <li key={i} className="leading-snug">{reason}</li>
+                <li key={i} className="leading-relaxed">{reason}</li>
               ))}
             </ul>
           </div>

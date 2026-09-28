@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, MapPin, Layers, Shield, Calendar, HeartPulse, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Clock, MapPin, Layers, Shield, Calendar, HeartPulse } from 'lucide-react';
 
 export default function AnomalyEvidenceCard({ evidence = {} }) {
   const items = [
@@ -52,10 +52,15 @@ export default function AnomalyEvidenceCard({ evidence = {} }) {
   ];
 
   return (
-    <div className="sentinel-card p-5">
-      <div className="pb-3 border-b border-sentinel-border flex items-center justify-between">
-        <h3 className="text-sm font-bold text-slate-800">Evidence Fusion Breakdown</h3>
-        <span className="text-[10px] text-slate-500 font-medium">6 Multi-Modal QC Layers</span>
+    <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200">
+      <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
+        <div>
+          <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Evidence Fusion Breakdown</h3>
+          <p className="text-[11px] text-slate-400">6 Multi-Modal Quality-Control Layers</p>
+        </div>
+        <span className="text-[10px] text-blue-700 bg-blue-50 border border-blue-200/80 px-3 py-1 rounded-full font-semibold">
+          Multi-Layer Consensus
+        </span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
@@ -64,15 +69,15 @@ export default function AnomalyEvidenceCard({ evidence = {} }) {
           return (
             <div
               key={idx}
-              className={`p-3 rounded-md border flex items-start space-x-3 transition-colors ${
+              className={`p-3.5 rounded-2xl border flex items-start space-x-3 transition-all ${
                 it.passed
-                  ? 'bg-emerald-50/30 border-emerald-200'
-                  : 'bg-red-50/40 border-red-200'
+                  ? 'bg-emerald-50/20 border-emerald-100 hover:border-emerald-200'
+                  : 'bg-red-50/20 border-red-100 hover:border-red-200'
               }`}
             >
               <div
-                className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                  it.passed ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                  it.passed ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -81,14 +86,14 @@ export default function AnomalyEvidenceCard({ evidence = {} }) {
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-800">{it.title}</span>
                   <span
-                    className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase ${
-                      it.passed ? 'text-emerald-700 bg-emerald-100' : 'text-red-700 bg-red-100'
+                    className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                      it.passed ? 'text-emerald-700 bg-emerald-100/70' : 'text-red-700 bg-red-100/70'
                     }`}
                   >
                     {it.passed ? 'SUPPORT' : 'ANOMALY'} ({it.score}/100)
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-600 mt-1 leading-snug">{it.details}</p>
+                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{it.details}</p>
               </div>
             </div>
           );

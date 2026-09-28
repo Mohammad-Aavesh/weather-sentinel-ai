@@ -32,7 +32,7 @@ export default function SensorHealth() {
           return (
             <div
               key={h._id}
-              className={`sentinel-card p-5 border-t-4 transition-all ${
+              className={`sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200 border-t-4 transition-all shadow-xs ${
                 isDegraded ? 'border-t-amber-500' : 'border-t-emerald-500'
               }`}
             >
@@ -56,8 +56,8 @@ export default function SensorHealth() {
                 </div>
                 <div className="flex justify-between items-center text-slate-600">
                   <span>Sensor Noise Level:</span>
-                  <span className={`font-bold px-1.5 py-0.2 rounded text-[10px] ${
-                    h.noiseLevel === 'HIGH' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-700'
+                  <span className={`font-bold px-2.5 py-0.5 rounded-full text-[9px] ${
+                    h.noiseLevel === 'HIGH' ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-slate-50 text-slate-700 border border-slate-200'
                   }`}>
                     {h.noiseLevel}
                   </span>
@@ -68,9 +68,9 @@ export default function SensorHealth() {
                 </div>
                 <div className="flex justify-between items-center text-slate-600">
                   <span>Failure Risk:</span>
-                  <span className={`font-bold px-1.5 py-0.2 rounded text-[10px] ${
-                    h.failureRisk === 'HIGH' ? 'bg-red-100 text-red-700' :
-                    h.failureRisk === 'MEDIUM' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'
+                  <span className={`font-bold px-2.5 py-0.5 rounded-full text-[9px] ${
+                    h.failureRisk === 'HIGH' ? 'bg-red-50 text-red-700 border border-red-200' :
+                    h.failureRisk === 'MEDIUM' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                   }`}>
                     {h.failureRisk} RISK
                   </span>
@@ -85,7 +85,7 @@ export default function SensorHealth() {
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
                   Predictive Recommendation
                 </span>
-                <p className="text-xs text-slate-700 italic">
+                <p className="text-xs text-slate-600 italic">
                   "{h.maintenanceRecommendation || 'Routine operation within normal tolerances.'}"
                 </p>
               </div>

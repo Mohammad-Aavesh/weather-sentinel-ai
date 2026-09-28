@@ -41,20 +41,20 @@ export default function Maintenance() {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="sentinel-card p-4 border-l-4 border-l-red-500">
-          <span className="text-[11px] font-bold text-slate-500 uppercase">Immediate Action Required</span>
+        <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-red-200 shadow-xs border-l-4 border-l-red-500">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Immediate Action</span>
           <p className="text-2xl font-black text-red-600 mt-1">{summary.required}</p>
         </div>
-        <div className="sentinel-card p-4 border-l-4 border-l-amber-500">
-          <span className="text-[11px] font-bold text-slate-500 uppercase">Inspection Due Soon</span>
+        <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-amber-200 shadow-xs border-l-4 border-l-amber-500">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Inspection Due Soon</span>
           <p className="text-2xl font-black text-amber-600 mt-1">{summary.dueSoon}</p>
         </div>
-        <div className="sentinel-card p-4 border-l-4 border-l-blue-500">
-          <span className="text-[11px] font-bold text-slate-500 uppercase">Field Team Dispatched</span>
+        <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200 shadow-xs border-l-4 border-l-blue-500">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Field Team Dispatched</span>
           <p className="text-2xl font-black text-blue-600 mt-1">{summary.scheduled}</p>
         </div>
-        <div className="sentinel-card p-4 border-l-4 border-l-emerald-500">
-          <span className="text-[11px] font-bold text-slate-500 uppercase">Completed This Month</span>
+        <div className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-emerald-200 shadow-xs border-l-4 border-l-emerald-500">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Completed This Month</span>
           <p className="text-2xl font-black text-emerald-600 mt-1">{summary.completed}</p>
         </div>
       </div>
@@ -62,12 +62,12 @@ export default function Maintenance() {
       {/* Tickets List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {tickets.map((t) => (
-          <div key={t._id} className="sentinel-card p-5 flex flex-col justify-between">
+          <div key={t._id} className="sentinel-card p-5 rounded-2xl border border-slate-100 hover:border-blue-200 flex flex-col justify-between shadow-xs transition-all">
             <div>
-              <div className="flex items-center justify-between pb-2 border-b">
+              <div className="flex items-center justify-between pb-2.5 border-b border-slate-100">
                 <span className="font-extrabold text-blue-700 text-sm">{t.stationId}</span>
-                <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                  t.status === 'REQUIRED' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'
+                <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                  t.status === 'REQUIRED' ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-amber-50 text-amber-800 border border-amber-200'
                 }`}>
                   {t.status}
                 </span>
@@ -77,7 +77,7 @@ export default function Maintenance() {
                 <span className="text-xs font-bold text-slate-800 capitalize">
                   {t.sensorType} Sensor Recalibration
                 </span>
-                <p className="text-xs text-slate-600 mt-1 leading-snug">
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                   {t.recommendedAction}
                 </p>
               </div>
@@ -104,11 +104,11 @@ export default function Maintenance() {
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t flex items-center justify-between">
-              <span className="text-[10px] text-slate-400 font-semibold">{t.priority}</span>
+            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span className="text-[10px] text-slate-400 font-semibold uppercase">{t.priority}</span>
               <button
                 onClick={() => handleStatusChange(t._id, t.status === 'REQUIRED' ? 'SCHEDULED' : 'COMPLETED')}
-                className="px-3 py-1 text-xs font-semibold rounded bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                className="px-3.5 py-1.5 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-all"
               >
                 {t.status === 'REQUIRED' ? 'Dispatch Crew' : 'Mark Completed'}
               </button>
