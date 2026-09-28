@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import MobileNav from './MobileNav';
 import { useSentinel } from '../../context/SentinelContext';
-import { X, ShieldAlert, Smartphone } from 'lucide-react';
+import { X, ShieldAlert, Smartphone, Radio } from 'lucide-react';
 
 export default function Layout() {
   const { toast, dismissToast, isMobileMode, toggleMobileMode } = useSentinel();
@@ -13,14 +13,13 @@ export default function Layout() {
     <div className="flex h-screen w-screen overflow-hidden bg-slate-50/60">
       {/* Toast Alert Banner */}
       {toast && (
-        <div className="fixed top-5 right-5 z-50 max-w-md w-full bg-white border border-red-200/90 shadow-2xl rounded-2xl p-4 text-slate-800 flex items-start space-x-3.5 animate-bounce">
-          <div className="w-9 h-9 rounded-xl bg-red-50 border border-red-200/80 flex items-center justify-center flex-shrink-0 text-red-600 mt-0.5">
-            <ShieldAlert className="w-5 h-5 text-red-500" />
+        <div className="fixed top-5 right-5 z-50 max-w-md w-full bg-white border border-orange-200/90 shadow-2xl rounded-2xl p-4 text-slate-800 flex items-start space-x-3.5">
+          <div className="w-9 h-9 rounded-xl bg-orange-50 border border-orange-200/80 flex items-center justify-center flex-shrink-0 text-orange-500 mt-0.5">
+            <ShieldAlert className="w-5 h-5 text-orange-400" />
           </div>
           <div className="flex-1">
-            <h4 className="text-xs font-bold text-red-600 uppercase tracking-wider">{toast.title}</h4>
-            <p className="text-xs text-slate-700 mt-0.5 font-medium">{toast.message}</p>
-            <span className="text-[10px] text-slate-400 mt-1 block">Live Engine Telemetry Alert</span>
+            <h4 className="text-xs font-bold text-orange-600">{toast.title}</h4>
+            <p className="text-xs text-slate-600 mt-0.5">{toast.message}</p>
           </div>
           <button onClick={dismissToast} className="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
             <X className="w-4 h-4" />
@@ -82,6 +81,16 @@ export default function Layout() {
 
           {/* Right Main Stage */}
           <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
+            {/* Blue Title Header */}
+            <div className="bg-blue-600 px-6 py-2.5 flex items-center space-x-3 flex-shrink-0 shadow-sm">
+              <Radio className="w-4 h-4 text-blue-200 flex-shrink-0" />
+              <h1 className="text-sm font-bold text-white tracking-wide">Weather Sentinel AI</h1>
+              <span className="text-blue-300 text-[10px] font-medium hidden sm:inline">— Trustworthy Weather Data. Safer Decisions.</span>
+              <span className="ml-auto flex items-center space-x-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="text-[10px] text-blue-200 font-medium">Live</span>
+              </span>
+            </div>
             <Topbar />
             <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 md:pb-6">
               <Outlet />

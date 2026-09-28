@@ -136,7 +136,7 @@ export default function StationDetails() {
           <div className="flex items-start space-x-3">
             <button
               onClick={() => navigate('/stations')}
-              className="p-1.5 rounded-md hover:bg-slate-100 text-slate-500 transition-colors mt-0.5"
+              className="p-1.5 rounded-full hover:bg-blue-50 text-slate-400 hover:text-blue-500 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
@@ -167,7 +167,7 @@ export default function StationDetails() {
           <div className="flex items-center space-x-3">
             <button
               onClick={() => navigate('/simulator')}
-              className="px-3 py-1.5 text-xs font-bold rounded bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition-all"
+              className="px-3 py-1.5 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 transition-all"
             >
               Test with Simulator
             </button>
@@ -180,10 +180,10 @@ export default function StationDetails() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-3.5 py-1.5 rounded-md transition-colors whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap text-xs ${
                 activeTab === tab.key
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-slate-600 hover:bg-slate-100'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-500 hover:bg-blue-50 hover:text-blue-600'
               }`}
             >
               {tab.label}
@@ -225,27 +225,22 @@ export default function StationDetails() {
         <div className="space-y-6">
           {/* Anomaly Callout Banner if station has anomaly */}
           {isAnomalous && (
-            <div className="p-4 rounded-lg bg-red-50 border border-red-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-orange-50/60 border border-orange-200/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
               <div className="flex items-start space-x-3">
-                <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <AlertTriangle className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="flex items-center space-x-2">
-                    <h4 className="text-xs font-bold text-red-900 uppercase tracking-wider">
-                      Active Telemetry Anomaly Detected
-                    </h4>
+                    <span className="text-xs font-semibold text-orange-800">Active Anomaly Detected</span>
                     <SeverityBadge severity="HIGH" />
-                    <span className="text-[10px] font-bold text-red-700 bg-red-100 px-1.5 py-0.5 rounded">
-                      Quarantined
-                    </span>
                   </div>
-                  <p className="text-xs text-red-800 mt-1">
-                    Probable Temperature Sensor Fault: Reported 55.0°C vs expected 31.8°C. Neighboring stations remain normal (30–33°C).
+                  <p className="text-xs text-orange-700 mt-1">
+                    Probable Temperature Sensor Fault: Reported 55.0°C vs expected 31.8°C.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setActiveTab('anomaly')}
-                className="px-3 py-1.5 text-xs font-bold rounded bg-red-600 hover:bg-red-700 text-white whitespace-nowrap transition-colors"
+                className="px-3 py-1.5 text-xs font-semibold rounded-full bg-orange-500 hover:bg-orange-600 text-white whitespace-nowrap transition-colors"
               >
                 Inspect Evidence & SHAP
               </button>
@@ -288,23 +283,22 @@ export default function StationDetails() {
           <AnomalyEvidenceCard evidence={anomaly?.evidence || {}} />
 
           {/* Action & Maintenance Recommendation */}
-          <div className="sentinel-card p-5 border-l-4 border-amber-500">
-            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Recommended Meteorological Operations Action</h4>
-            <p className="text-xs text-slate-700 mt-1 font-medium">
-              "Inspect temperature sensor wiring and thermocouple resistance; verify aspirated radiation shield fan operation."
+          <div className="sentinel-card p-5 border-l-2 border-orange-300">
+            <p className="text-xs text-slate-600 font-medium">
+              Inspect temperature sensor wiring and thermocouple resistance; verify aspirated radiation shield fan operation.
             </p>
             <div className="mt-3 flex items-center space-x-2">
               <button
                 onClick={() => navigate('/quarantine')}
-                className="px-3 py-1.5 text-xs font-semibold rounded bg-amber-600 hover:bg-amber-700 text-white"
+                className="px-3 py-1.5 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 text-white"
               >
-                Go to Quarantine Console
+                Quarantine Console
               </button>
               <button
                 onClick={() => navigate('/maintenance')}
-                className="px-3 py-1.5 text-xs font-semibold rounded bg-slate-100 hover:bg-slate-200 text-slate-800 border"
+                className="px-3 py-1.5 text-xs font-semibold rounded-full bg-white hover:bg-slate-50 text-slate-600 border border-slate-200"
               >
-                View Maintenance Work Order
+                Maintenance Order
               </button>
             </div>
           </div>

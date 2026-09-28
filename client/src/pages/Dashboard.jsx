@@ -113,18 +113,13 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center space-x-2.5">
-            <span>Meteorological Command Center</span>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Real-time quality-control & evidence-based anomaly detection for 25 Automatic Weather Stations
-          </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center space-x-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <h2 className="text-sm font-bold text-slate-700 tracking-tight">Live Monitoring — 25 Stations</h2>
         </div>
 
-        <div className="flex items-center space-x-2.5">
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => navigate('/simulator')}
             className="flex items-center space-x-2 px-4 py-2 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm shadow-blue-500/25 transition-all"
@@ -134,7 +129,7 @@ export default function Dashboard() {
           </button>
           <button
             onClick={fetchData}
-            className="p-2 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-600 hover:text-blue-600 transition-colors shadow-xs"
+            className="p-2 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-500 hover:text-blue-600 transition-colors shadow-xs"
             title="Refresh Telemetry"
           >
             <RefreshCw className="w-4 h-4" />
@@ -208,8 +203,7 @@ export default function Dashboard() {
         <div className="lg:col-span-7 sentinel-card p-5 rounded-2xl flex flex-col border border-slate-100 hover:border-blue-200">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
             <div>
-              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">AWS Station Network Map</h3>
-              <p className="text-[11px] text-slate-400">Karnataka Regional Synoptic Grid</p>
+              <h3 className="text-xs font-semibold text-slate-600">Station Network</h3>
             </div>
             <button
               onClick={() => navigate('/live-map')}
@@ -228,8 +222,8 @@ export default function Dashboard() {
         <div className="lg:col-span-5 sentinel-card p-5 rounded-2xl flex flex-col border border-slate-100 hover:border-blue-200">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-2">
             <div className="flex items-center space-x-2">
-              <AlertTriangle className="w-4 h-4 text-red-500" />
-              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Operational Alerts</h3>
+              <AlertTriangle className="w-4 h-4 text-orange-400" />
+              <h3 className="text-xs font-semibold text-slate-600">Alerts</h3>
             </div>
             <button
               onClick={() => navigate('/alerts')}
@@ -270,9 +264,9 @@ export default function Dashboard() {
       {/* Featured Primary Demo Section: AWS-042 Real-Time Quality Control */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <h3 className="text-sm font-bold text-slate-900">
-              Primary Demo Station: <span className="text-blue-700 font-extrabold">{primaryStation?.stationId || 'AWS-042'}</span> — {primaryStation?.name || 'Chikkamagaluru Hill Station'}
+          <div className="flex items-center space-x-2">
+            <h3 className="text-xs font-semibold text-slate-600">
+              <span className="text-blue-600 font-bold">{primaryStation?.stationId || 'AWS-042'}</span> — {primaryStation?.name || 'Chikkamagaluru Hill Station'}
             </h3>
             <StationStatusBadge status={primaryStation?.status || 'anomaly'} />
           </div>

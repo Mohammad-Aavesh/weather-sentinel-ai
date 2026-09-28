@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function SeverityBadge({ severity = 'LOW' }) {
   const map = {
-    CRITICAL: 'bg-red-50 text-red-700 border-red-200',
-    HIGH: 'bg-red-50 text-red-600 border-red-200',
-    MEDIUM: 'bg-amber-50 text-amber-700 border-amber-200',
+    CRITICAL: 'bg-orange-50 text-orange-700 border-orange-200',
+    HIGH: 'bg-orange-50 text-orange-600 border-orange-200',
+    MEDIUM: 'bg-amber-50 text-amber-600 border-amber-200',
     LOW: 'bg-blue-50 text-blue-700 border-blue-200',
-    NONE: 'bg-slate-50 text-slate-600 border-slate-200'
+    NONE: 'bg-slate-50 text-slate-500 border-slate-200'
   };
 
   const style = map[severity.toUpperCase()] || map.LOW;

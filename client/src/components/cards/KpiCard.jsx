@@ -17,11 +17,11 @@ export default function KpiCard({ title, value, subtitle, icon: Icon, color = 'b
       iconColor: 'text-emerald-600'
     },
     red: {
-      bg: 'bg-red-50/60',
-      border: 'border-slate-100 hover:border-red-200',
-      text: 'text-red-700',
-      iconBg: 'bg-red-50 text-red-600',
-      iconColor: 'text-red-600'
+      bg: 'bg-orange-50/60',
+      border: 'border-slate-100 hover:border-orange-200',
+      text: 'text-orange-700',
+      iconBg: 'bg-orange-50 text-orange-500',
+      iconColor: 'text-orange-500'
     },
     amber: {
       bg: 'bg-amber-50/60',
@@ -56,7 +56,7 @@ export default function KpiCard({ title, value, subtitle, icon: Icon, color = 'b
       <div>
         <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{title}</p>
         <div className="flex items-baseline space-x-1.5 mt-1">
-          <span className="text-2xl font-black text-slate-800 tracking-tight">{value}</span>
+          <span className="text-2xl font-black text-slate-700 tracking-tight">{value}</span>
           {subtitle && <span className="text-[11px] text-slate-400 font-medium">{subtitle}</span>}
         </div>
       </div>
